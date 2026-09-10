@@ -1,13 +1,17 @@
 let musicStarted = false;
 let audioContext;
-let currentPage = 1;
 
-/* เปิดกล่องของขวัญ */
+
+/* =========================
+   เปิดกล่องของขวัญ
+========================= */
 
 function openGift() {
 
+  // เริ่มเพลงหลังจากผู้ใช้แตะ
   startMusic();
 
+  // ปล่อยคอนเฟตตี้
   celebrate();
 
   document
@@ -23,11 +27,12 @@ function openGift() {
       .add("active");
 
   }, 500);
-
 }
 
 
-/* ไปหน้าต่อไป */
+/* =========================
+   ไปหน้าถัดไป
+========================= */
 
 function nextPage() {
 
@@ -44,11 +49,12 @@ function nextPage() {
       .add("active");
 
   }, 400);
-
 }
 
 
-/* คอนเฟตตี้ */
+/* =========================
+   คอนเฟตตี้
+========================= */
 
 function celebrate() {
 
@@ -73,8 +79,7 @@ function celebrate() {
     piece.innerHTML =
       emojis[
         Math.floor(
-          Math.random() *
-          emojis.length
+          Math.random() * emojis.length
         )
       ];
 
@@ -82,9 +87,7 @@ function celebrate() {
       Math.random() * 100 + "vw";
 
     piece.style.animationDuration =
-      2 +
-      Math.random() * 3 +
-      "s";
+      2 + Math.random() * 3 + "s";
 
     document
       .body
@@ -93,26 +96,37 @@ function celebrate() {
     setTimeout(() => {
       piece.remove();
     }, 5000);
-
   }
-
 }
 
 
-/* เพลงน่ารักสดใสที่สร้างจากเสียงในเว็บ */
+/* =========================
+   เพลง
+========================= */
 
 function startMusic() {
 
+  // ถ้าเริ่มไปแล้ว ไม่ต้องสร้างเพลงซ้ำ
   if (musicStarted) return;
 
   musicStarted = true;
 
-  audioContext =
-    new (
-      window.AudioContext ||
-      window.webkitAudioContext
-    )();
+  const AudioContext =
+    window.AudioContext ||
+    window.webkitAudioContext;
 
+  if (!AudioContext) {
+    console.log(
+      "Browser นี้ไม่รองรับ Web Audio API"
+    );
+
+    return;
+  }
+
+  audioContext =
+    new AudioContext();
+
+  // โน้ตเพลง
   const notes = [
     523, 659, 784, 659,
     698, 784, 880, 784,
@@ -120,7 +134,7 @@ function startMusic() {
     659, 784, 698, 523
   ];
 
-  let time =
+  const startTime =
     audioContext.currentTime;
 
   notes.forEach((frequency, index) => {
@@ -143,43 +157,31 @@ function startMusic() {
     oscillator.frequency.value =
       frequency;
 
+    const noteTime =
+      startTime + index * 0.25;
+
     gain.gain.setValueAtTime(
       0,
-      time + index * 0.25
+      noteTime
     );
 
     gain.gain.linearRampToValueAtTime(
       0.08,
-      time + index * 0.25 + 0.03
+      noteTime + 0.03
     );
 
     gain.gain.exponentialRampToValueAtTime(
       0.001,
-      time + index * 0.25 + 0.23
+      noteTime + 0.23
     );
 
     oscillator.start(
-      time + index * 0.25
+      noteTime
     );
 
     oscillator.stop(
-      time + index * 0.25 + 0.25
+      noteTime + 0.25
     );
 
   });
-
 }
-
-
-/* พยายามเริ่มเพลงตอนเปิดเว็บ */
-
-window.addEventListener(
-  "load",
-  () => {
-
-    setTimeout(() => {
-      startMusic();
-    }, 500);
-
-  }
-);
