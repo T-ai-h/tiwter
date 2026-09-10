@@ -1,0 +1,317 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+
+  background:
+    radial-gradient(circle at top, #e8ffd9, transparent 40%),
+    linear-gradient(135deg, #0f5132, #4caf70, #b7e4a1);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-decor {
+  position: fixed;
+  top: 30px;
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  opacity: 0.5;
+  animation: floatDecor 5s infinite ease-in-out;
+}
+
+.container {
+  width: 90%;
+  max-width: 420px;
+  min-height: 650px;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  border-radius: 35px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.25);
+
+  padding: 35px 25px;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.page {
+  display: none;
+  text-align: center;
+  animation: pageShow 0.7s ease;
+}
+
+.page.active {
+  display: block;
+}
+
+.small-text {
+  color: #6b8f71;
+  letter-spacing: 2px;
+}
+
+h1 {
+  color: #1d6b42;
+  font-size: 45px;
+  margin: 10px 0;
+}
+
+h2 {
+  color: #287c4e;
+  font-size: 28px;
+}
+
+p {
+  color: #38684b;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* หมี */
+
+.bear {
+  font-size: 100px;
+  animation: bounce 2s infinite;
+}
+
+
+
+.gift-box {
+  margin: 45px auto 20px;
+  width: 160px;
+  height: 160px;
+
+  position: relative;
+
+  cursor: pointer;
+
+  animation: giftBounce 2s infinite;
+}
+
+.gift {
+  font-size: 150px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.15));
+}
+
+.gift-lid {
+  position: absolute;
+}
+
+.gift-ribbon {
+  position: absolute;
+}
+
+.tap-text {
+  color: #55a46e;
+  font-size: 16px;
+}
+
+
+
+.cake {
+  font-size: 130px;
+  animation: cakeDance 1.5s infinite;
+}
+
+.toey {
+  font-size: 50px;
+  color: #1f8c50;
+}
+
+.birthday-text {
+  background: #efffe9;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+
+
+button {
+  margin-top: 25px;
+
+  border: none;
+
+  padding: 16px 25px;
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(135deg, #2f9e5c, #79c76b);
+
+  color: white;
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px rgba(47, 158, 92, 0.3);
+
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+
+
+.letter {
+  margin-top: 20px;
+
+  background:
+    linear-gradient(135deg, #f8fff3, #e5f8dc);
+
+  padding: 25px 20px;
+
+  border-radius: 25px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.1);
+
+  animation: letterPop 0.8s ease;
+}
+
+.letter-top {
+  font-size: 65px;
+}
+
+.letter h2 {
+  margin: 5px;
+}
+
+.letter h3 {
+  color: #2d8b52;
+  margin-bottom: 0;
+}
+
+.emoji-line {
+  font-size: 28px;
+  margin: 15px 0;
+}
+
+
+
+.music-button {
+  position: fixed;
+
+  right: 20px;
+  bottom: 20px;
+
+  width: 55px;
+  height: 55px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 25px;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+
+  cursor: pointer;
+
+  animation: musicPulse 2s infinite;
+}
+
+
+.confetti-piece {
+  position: fixed;
+
+  top: -40px;
+
+  font-size: 25px;
+
+  z-index: 100;
+
+  pointer-events: none;
+
+  animation: fall 4s linear forwards;
+}
+
+/* Animation */
+
+@keyframes bounce {
+  50% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+}
+
+@keyframes giftBounce {
+  50% {
+    transform: translateY(-15px) rotate(-5deg);
+  }
+}
+
+@keyframes cakeDance {
+  50% {
+    transform: scale(1.1) rotate(3deg);
+  }
+}
+
+@keyframes pageShow {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes letterPop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fall {
+  to {
+    transform:
+      translateY(110vh)
+      rotate(720deg);
+  }
+}
+
+@keyframes musicPulse {
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes floatDecor {
+  50% {
+    transform: translateY(15px);
+  }
+}
