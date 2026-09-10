@@ -6,6 +6,7 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow: hidden;
+
   font-family: Arial, sans-serif;
 
   background:
@@ -15,39 +16,61 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding: 20px;
 }
+
+
+/* ของตกแต่งด้านบน */
 
 .background-decor {
   position: fixed;
   top: 30px;
   width: 100%;
+
   text-align: center;
+
   font-size: 30px;
   opacity: 0.5;
+
   animation: floatDecor 5s infinite ease-in-out;
+
+  pointer-events: none;
 }
+
+
+/* กล่องหลัก */
 
 .container {
   width: 90%;
   max-width: 420px;
-  min-height: 650px;
+
+  min-height: 600px;
+  max-height: 90vh;
 
   background: rgba(255, 255, 255, 0.92);
 
   border-radius: 35px;
 
   box-shadow:
-    0 20px 60px rgba(0,0,0,0.25);
+    0 20px 60px rgba(0, 0, 0, 0.25);
 
   padding: 35px 25px;
 
   position: relative;
-  overflow: hidden;
+
+  overflow-y: auto;
+  overflow-x: hidden;
 }
+
+
+/* หน้า */
 
 .page {
   display: none;
+
   text-align: center;
+
   animation: pageShow 0.7s ease;
 }
 
@@ -55,39 +78,52 @@ body {
   display: block;
 }
 
+
+/* ข้อความ */
+
 .small-text {
   color: #6b8f71;
+
   letter-spacing: 2px;
 }
 
 h1 {
   color: #1d6b42;
+
   font-size: 45px;
+
   margin: 10px 0;
 }
 
 h2 {
   color: #287c4e;
+
   font-size: 28px;
 }
 
 p {
   color: #38684b;
+
   font-size: 18px;
+
   line-height: 1.8;
 }
+
 
 /* หมี */
 
 .bear {
   font-size: 100px;
+
   animation: bounce 2s infinite;
 }
 
 
+/* กล่องของขวัญ */
 
 .gift-box {
   margin: 45px auto 20px;
+
   width: 160px;
   height: 160px;
 
@@ -100,10 +136,16 @@ p {
 
 .gift {
   font-size: 150px;
+
   position: absolute;
+
   left: 0;
   top: 0;
-  filter: drop-shadow(0 10px 10px rgba(0,0,0,0.15));
+
+  filter:
+    drop-shadow(
+      0 10px 10px rgba(0, 0, 0, 0.15)
+    );
 }
 
 .gift-lid {
@@ -116,28 +158,35 @@ p {
 
 .tap-text {
   color: #55a46e;
+
   font-size: 16px;
 }
 
 
+/* เค้ก */
 
 .cake {
   font-size: 130px;
+
   animation: cakeDance 1.5s infinite;
 }
 
 .toey {
   font-size: 50px;
+
   color: #1f8c50;
 }
 
 .birthday-text {
   background: #efffe9;
+
   padding: 20px;
+
   border-radius: 20px;
 }
 
 
+/* ปุ่ม */
 
 button {
   margin-top: 25px;
@@ -149,7 +198,11 @@ button {
   border-radius: 30px;
 
   background:
-    linear-gradient(135deg, #2f9e5c, #79c76b);
+    linear-gradient(
+      135deg,
+      #2f9e5c,
+      #79c76b
+    );
 
   color: white;
 
@@ -160,7 +213,8 @@ button {
   cursor: pointer;
 
   box-shadow:
-    0 8px 20px rgba(47, 158, 92, 0.3);
+    0 8px 20px
+    rgba(47, 158, 92, 0.3);
 
   transition: 0.2s;
 }
@@ -174,19 +228,25 @@ button:active {
 }
 
 
+/* จดหมาย */
 
 .letter {
   margin-top: 20px;
 
   background:
-    linear-gradient(135deg, #f8fff3, #e5f8dc);
+    linear-gradient(
+      135deg,
+      #f8fff3,
+      #e5f8dc
+    );
 
   padding: 25px 20px;
 
   border-radius: 25px;
 
   box-shadow:
-    0 10px 30px rgba(0,0,0,0.1);
+    0 10px 30px
+    rgba(0, 0, 0, 0.1);
 
   animation: letterPop 0.8s ease;
 }
@@ -201,15 +261,18 @@ button:active {
 
 .letter h3 {
   color: #2d8b52;
+
   margin-bottom: 0;
 }
 
 .emoji-line {
   font-size: 28px;
+
   margin: 15px 0;
 }
 
 
+/* ปุ่มเพลง */
 
 .music-button {
   position: fixed;
@@ -225,18 +288,25 @@ button:active {
   background: white;
 
   display: flex;
+
   justify-content: center;
   align-items: center;
 
   font-size: 25px;
 
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  box-shadow:
+    0 5px 20px
+    rgba(0, 0, 0, 0.2);
 
   cursor: pointer;
 
   animation: musicPulse 2s infinite;
+
+  z-index: 200;
 }
 
+
+/* คอนเฟตตี้ */
 
 .confetti-piece {
   position: fixed;
@@ -252,46 +322,59 @@ button:active {
   animation: fall 4s linear forwards;
 }
 
+
 /* Animation */
 
 @keyframes bounce {
   50% {
-    transform: translateY(-15px) rotate(5deg);
+    transform:
+      translateY(-15px)
+      rotate(5deg);
   }
 }
 
 @keyframes giftBounce {
   50% {
-    transform: translateY(-15px) rotate(-5deg);
+    transform:
+      translateY(-15px)
+      rotate(-5deg);
   }
 }
 
 @keyframes cakeDance {
   50% {
-    transform: scale(1.1) rotate(3deg);
+    transform:
+      scale(1.1)
+      rotate(3deg);
   }
 }
 
 @keyframes pageShow {
   from {
     opacity: 0;
-    transform: scale(0.8);
+
+    transform:
+      scale(0.8);
   }
 
   to {
     opacity: 1;
-    transform: scale(1);
+
+    transform:
+      scale(1);
   }
 }
 
 @keyframes letterPop {
   0% {
     transform: scale(0.5);
+
     opacity: 0;
   }
 
   100% {
     transform: scale(1);
+
     opacity: 1;
   }
 }
@@ -312,6 +395,44 @@ button:active {
 
 @keyframes floatDecor {
   50% {
-    transform: translateY(15px);
+    transform:
+      translateY(15px);
+  }
+}
+
+
+/* มือถือจอเล็ก */
+
+@media (max-height: 700px) {
+
+  .container {
+    min-height: 0;
+    max-height: 90vh;
+
+    padding: 25px 20px;
+  }
+
+  .bear {
+    font-size: 75px;
+  }
+
+  .gift-box {
+    margin-top: 25px;
+  }
+
+  .cake {
+    font-size: 90px;
+  }
+
+  h1 {
+    font-size: 38px;
+  }
+
+  .toey {
+    font-size: 42px;
+  }
+
+  p {
+    font-size: 16px;
   }
 }
