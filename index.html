@@ -1,185 +1,127 @@
-let musicStarted = false;
-let audioContext;
-let currentPage = 1;
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/* เปิดกล่องของขวัญ */
+  <title>Happy Birthday Toey 💚</title>
 
-function openGift() {
+  <link rel="stylesheet" href="style.css">
+</head>
 
-  startMusic();
+<body>
 
-  celebrate();
+  <div class="background-decor">✦ 💚 ✦ 🎀 ✦ 🧸 ✦</div>
 
-  document
-    .getElementById("page1")
-    .classList
-    .remove("active");
+  <div class="container">
 
-  setTimeout(() => {
+    <!-- หน้าแรก -->
+    <section class="page active" id="page1">
 
-    document
-      .getElementById("page2")
-      .classList
-      .add("active");
+      <div class="bear">🧸</div>
 
-  }, 500);
+      <p class="small-text">
+        A special surprise for...
+      </p>
 
-}
+      <h1>Toey 💚</h1>
 
+      <p>
+        วันนี้มีบางอย่างมอบให้ด้วยนะ! 🎀
+      </p>
 
-/* ไปหน้าต่อไป */
+      <div class="gift-box" onclick="openGift()">
+        <div class="gift-lid"></div>
+        <div class="gift-ribbon"></div>
+        <div class="gift">🎁</div>
+      </div>
 
-function nextPage() {
+      <p class="tap-text">
+        แตะกล่องของขวัญสิ! ✨
+      </p>
 
-  document
-    .getElementById("page2")
-    .classList
-    .remove("active");
-
-  setTimeout(() => {
-
-    document
-      .getElementById("page3")
-      .classList
-      .add("active");
-
-  }, 400);
-
-}
+    </section>
 
 
-/* คอนเฟตตี้ */
+    <!-- เซอร์ไพรส์ -->
+    <section class="page" id="page2">
 
-function celebrate() {
+      <div class="cake">🎂</div>
 
-  const emojis = [
-    "🎉",
-    "🎊",
-    "💚",
-    "✨",
-    "🎀",
-    "🧸",
-    "🎈"
-  ];
+      <h2>HAPPY BIRTHDAY!</h2>
 
-  for (let i = 0; i < 80; i++) {
+      <h1 class="toey">
+        TOEY 💚
+      </h1>
 
-    const piece =
-      document.createElement("div");
+      <p class="birthday-text">
+        วันนี้เป็นวันพิเศษของเธอ!<br>
+        มารับคำอวยพรกันนน 🎉
+      </p>
 
-    piece.className =
-      "confetti-piece";
+      <button onclick="nextPage()">
+        เปิด 🎀
+      </button>
 
-    piece.innerHTML =
-      emojis[
-        Math.floor(
-          Math.random() *
-          emojis.length
-        )
-      ];
-
-    piece.style.left =
-      Math.random() * 100 + "vw";
-
-    piece.style.animationDuration =
-      2 +
-      Math.random() * 3 +
-      "s";
-
-    document
-      .body
-      .appendChild(piece);
-
-    setTimeout(() => {
-      piece.remove();
-    }, 5000);
-
-  }
-
-}
+    </section>
 
 
-/* เพลงน่ารักสดใสที่สร้างจากเสียงในเว็บ */
+    <!-- จดหมาย -->
+    <section class="page" id="page3">
 
-function startMusic() {
+      <div class="letter">
 
-  if (musicStarted) return;
+        <div class="letter-top">
+          💌
+        </div>
 
-  musicStarted = true;
+        <h2>
+          ถึง Toey 💚
+        </h2>
 
-  audioContext =
-    new (
-      window.AudioContext ||
-      window.webkitAudioContext
-    )();
+        <p>
+          ขอให้มีความสุขทุกวัน<br>
+          มีชีวิตที่อร่อย 🍰<br>
+          เจอแต่เรื่องดี ๆ<br>
+          ยิ้มเยอะ ๆ หัวเราะเยอะ ๆ<br>
+          และโชคดีเท่าฟ้าไปเลยยย! ☁️✨
+        </p>
 
-  const notes = [
-    523, 659, 784, 659,
-    698, 784, 880, 784,
-    784, 880, 1047, 880,
-    659, 784, 698, 523
-  ];
+        <div class="emoji-line">
+          🧸 🎀 💚 🎂 🎉
+        </div>
 
-  let time =
-    audioContext.currentTime;
+        <h3>
+          Happy Birthday! 💚
+        </h3>
 
-  notes.forEach((frequency, index) => {
+      </div>
 
-    const oscillator =
-      audioContext.createOscillator();
+      <button onclick="celebrate()">
+        กดรับคำอวยพร! 🎉
+      </button>
 
-    const gain =
-      audioContext.createGain();
+    </section>
 
-    oscillator.connect(gain);
-
-    gain.connect(
-      audioContext.destination
-    );
-
-    oscillator.type =
-      "sine";
-
-    oscillator.frequency.value =
-      frequency;
-
-    gain.gain.setValueAtTime(
-      0,
-      time + index * 0.25
-    );
-
-    gain.gain.linearRampToValueAtTime(
-      0.08,
-      time + index * 0.25 + 0.03
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-      0.001,
-      time + index * 0.25 + 0.23
-    );
-
-    oscillator.start(
-      time + index * 0.25
-    );
-
-    oscillator.stop(
-      time + index * 0.25 + 0.25
-    );
-
-  });
-
-}
+  </div>
 
 
-/* พยายามเริ่มเพลงตอนเปิดเว็บ */
+  <!-- คอนเฟตตี้ -->
+  <div id="confetti"></div>
 
-window.addEventListener(
-  "load",
-  () => {
 
-    setTimeout(() => {
-      startMusic();
-    }, 500);
+  <!-- ปุ่มเพลง -->
+  <div
+    id="musicButton"
+    class="music-button"
+    onclick="startMusic()"
+  >
+    🎵
+  </div>
 
-  }
-);
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>
